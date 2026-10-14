@@ -1,0 +1,16 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" rx="28" fill="#10183A"/>
+  <rect x="80" y="80" width="1040" height="740" rx="22" fill="#F1F4FF"/>
+  <rect x="80" y="80" width="1040" height="82" rx="22" fill="#DCE7FF"/>
+  <circle cx="124" cy="121" r="9" fill="#377BFF"/><circle cx="154" cy="121" r="9" fill="#9BAFFF"/><circle cx="184" cy="121" r="9" fill="#C8D5F8"/>
+  <rect x="128" y="220" width="274" height="520" rx="16" fill="#E2EAFF"/>
+  <rect x="450" y="220" width="592" height="84" rx="16" fill="#FFFFFF"/>
+  <rect x="450" y="338" width="278" height="178" rx="16" fill="#FFFFFF"/>
+  <rect x="764" y="338" width="278" height="178" rx="16" fill="#FFFFFF"/>
+  <rect x="450" y="550" width="592" height="190" rx="16" fill="#FFFFFF"/>
+  <path d="M474 448C522 416 548 466 584 440C619 414 644 456 690 423" stroke="#377BFF" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="545" cy="644" r="46" fill="#DCE7FF"/><circle cx="545" cy="644" r="20" fill="#377BFF"/>
+  <text x="474" y="270" fill="#11185C" font-family="Arial, sans-serif" font-size="30" font-weight="600">SaaS Psicologia</text>
+  <text x="474" y="638" fill="#11185C" font-family="Arial, sans-serif" font-size="22">Clareza para cada atendimento.</text>
+  <text x="474" y="681" fill="#6D7896" font-family="Arial, sans-serif" font-size="18">Produto em construção · 2026</text>
+</svg>

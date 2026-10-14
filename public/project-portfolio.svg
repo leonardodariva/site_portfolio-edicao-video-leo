@@ -1,0 +1,12 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" rx="28" fill="#0B1026"/>
+  <path d="M0 112H1200M0 788H1200M94 0V900M1106 0V900" stroke="#293252"/>
+  <g opacity=".45" fill="#6F8BE8"><circle cx="50" cy="52" r="2"/><circle cx="1150" cy="52" r="2"/><circle cx="50" cy="848" r="2"/><circle cx="1150" cy="848" r="2"/></g>
+  <circle cx="600" cy="450" r="236" fill="#11185C" stroke="#377BFF" stroke-opacity=".45"/>
+  <circle cx="600" cy="450" r="176" stroke="#9BAFFF" stroke-opacity=".35"/>
+  <text x="96" y="78" fill="#A5AEC8" font-family="Arial, sans-serif" font-size="18" letter-spacing="5">LEONARDO DARIVA</text>
+  <text x="1104" y="78" text-anchor="end" fill="#A5AEC8" font-family="Arial, sans-serif" font-size="18" letter-spacing="5">PORTFÓLIO DEV</text>
+  <text x="600" y="425" text-anchor="middle" fill="#F5F7FF" font-family="Arial, sans-serif" font-size="94" font-weight="600">design</text>
+  <text x="600" y="520" text-anchor="middle" fill="#377BFF" font-family="Arial, sans-serif" font-size="94" font-weight="600">+ código</text>
+  <text x="96" y="844" fill="#8995B5" font-family="Arial, sans-serif" font-size="18" letter-spacing="4">FRONT-END · UI/UX · PRODUTO</text>
+</svg>
