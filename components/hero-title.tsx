@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
-const lines = ["Front-end developer", "criando produtos digitais", "feitos para evoluir."];
-const mobileLines = ["Front-end developer", "criando produtos", "digitais feitos", "para evoluir."];
+const lines = ["Editor de vídeo", "criando narrativas visuais", "feitas para conectar."];
+const mobileLines = ["Editor de vídeo", "criando narrativas", "visuais feitas", "para conectar."];
 
 export function HeroTitle() {
   const titleRef = useRef<HTMLHeadingElement>(null);

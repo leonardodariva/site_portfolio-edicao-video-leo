@@ -6,9 +6,9 @@ const deploymentUrl =
 
 export const siteConfig = {
   name: "Leonardo Dariva",
-  role: "Front-end Developer",
+  role: "Editor de vídeo · Audiovisual",
   description:
-    "Desenvolvedor front-end com background em UI/UX, construindo interfaces acessíveis, responsivas e orientadas a produto.",
+    "Editor de vídeo com olhar para narrativa, ritmo e acabamento, transformando material bruto em histórias visuais claras e envolventes.",
   url: deploymentUrl,
   github: "https://github.com/leonardodariva",
   linkedin: "https://www.linkedin.com/in/leonardodariva",
@@ -93,24 +93,24 @@ export const projects: Project[] = [
 
 export const technologyGroups = [
   {
-    title: "Interface",
-    description: "Da semântica ao sistema de componentes.",
-    items: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS"],
+    title: "Narrativa",
+    description: "Da ideia ao roteiro visual.",
+    items: ["Storytelling", "Roteiro visual", "Referências", "Direção criativa"],
   },
   {
-    title: "Engenharia",
-    description: "Ferramentas para entregar com confiança.",
-    items: ["Git", "GitHub", "Node.js", "Vite", "REST APIs", "Axios", "TanStack Query", "TanStack Router"],
+    title: "Montagem",
+    description: "Ferramentas para transformar material bruto em ritmo.",
+    items: ["Premiere Pro", "DaVinci Resolve", "After Effects", "Cortes", "Trilha", "Sound design"],
   },
   {
-    title: "Qualidade",
-    description: "Comportamento verificado, não presumido.",
-    items: ["Vitest", "Playwright", "TypeScript strict", "ESLint", "Acessibilidade", "Performance"],
+    title: "Acabamento",
+    description: "Cada detalhe reforça a intenção do vídeo.",
+    items: ["Color grading", "Mixagem", "Legendas", "Revisão", "Formatos", "Exportação"],
   },
   {
-    title: "Produto",
-    description: "Um diferencial que aproxima código e pessoas.",
-    items: ["Figma", "UI/UX", "Design Systems", "Prototipação", "UX Research", "PixiJS", "Socket.IO"],
+    title: "Entrega",
+    description: "Vídeos prontos para cada canal e objetivo.",
+    items: ["Reels", "YouTube", "Institucional", "Motion", "Social media", "Cinema"],
   },
 ];
 

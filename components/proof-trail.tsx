@@ -7,7 +7,7 @@ export function ProofTrail() {
       <div className="proof-trail-copy">
         <p className="section-label">Vamos conversar</p>
         <h2>Vamos construir algo relevante.</h2>
-        <p>Tem um produto para tirar do papel ou uma interface para evoluir? Conte o contexto e eu respondo com próximos passos claros.</p>
+        <p>Tem uma história para contar ou um vídeo para ganhar ritmo? Conte o contexto e eu respondo com próximos passos claros.</p>
         <a href={`mailto:${siteConfig.email}?subject=Vamos conversar sobre um projeto`} aria-label="Enviar e-mail sobre um projeto">Falar sobre um projeto <span><FiMessageCircle size={16} aria-hidden="true" /></span></a>
       </div>
     </div>

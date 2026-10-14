@@ -10,7 +10,7 @@ export function SiteFooter() {
       <div className="page-shell">
         <div className="footer-brand-row">
           <Link className="monogram footer-monogram" href="/" aria-label="Leonardo Dariva — início"><Image className="brand-mark" src="/brand/leonardo-dariva.svg" alt="" width={40} height={40} /></Link>
-          <span>Front-end Developer · Brasil</span>
+          <span>Editor de vídeo · Audiovisual · Brasil</span>
         </div>
         <div className="footer-heading">
           <h2>Vamos construir<br />o próximo projeto.</h2>
@@ -22,7 +22,7 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="footer-grid">
-          <div><span className="footer-label">Disponível para</span><p>Front-end · React · Product Engineering · Game UI</p></div>
+          <div><span className="footer-label">Disponível para</span><p>Edição · Motion · Storytelling · Conteúdo digital</p></div>
           <div className="footer-links"><span className="footer-label">Links</span><a href={siteConfig.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={siteConfig.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={`mailto:${siteConfig.email}`}>E-mail ↗</a><Link href="/curriculo">Currículo ↗</Link></div>
           <div><span className="footer-label">Baseado em</span><p>Apucarana, Paraná<br />Brasil</p></div>
         </div>
