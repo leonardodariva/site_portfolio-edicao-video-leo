@@ -39,12 +39,11 @@ export default async function ProjectPage({ params }: Props) {
             <p className="case-summary">{project.summary}</p>
             <div className="case-actions">
               {project.liveUrl && <a className="primary-button" href={project.liveUrl} target="_blank" rel="noreferrer">Abrir projeto <span>↗</span></a>}
-              <a className="secondary-button" href={project.repositoryUrl} target="_blank" rel="noreferrer">Ver código <span>↗</span></a>
             </div>
           </div>
         </section>
 
-        <div className="page-shell case-visual-wrap"><ProjectVisual type={project.visual} /></div>
+        <div className="page-shell case-visual-wrap"><ProjectVisual /></div>
 
         {project.metrics && (
           <section className="case-metrics page-shell" aria-label="Métricas do projeto">
@@ -62,10 +61,10 @@ export default async function ProjectPage({ params }: Props) {
 
         <section className="section case-detail dotted-bg">
           <div className="page-shell case-detail-grid">
-            <div><p className="section-label"><span>02</span> Decisão técnica</p><h2>O desafio central.</h2></div>
+            <div><p className="section-label"><span>02</span> Decisão de edição</p><h2>O desafio central.</h2></div>
             <div><p className="case-detail-lead">{project.challenge}</p></div>
-            <div className="case-list-block"><h3>Funcionalidades</h3><ul>{project.features.map((item) => <li key={item}><span>↳</span>{item}</li>)}</ul></div>
-            <div className="case-list-block"><h3>Tecnologias</h3><ul>{project.stack.map((item) => <li key={item}><span>↳</span>{item}</li>)}</ul></div>
+            <div className="case-list-block"><h3>Possibilidades</h3><ul>{project.features.map((item) => <li key={item}><span>↳</span>{item}</li>)}</ul></div>
+            <div className="case-list-block"><h3>Ferramentas e linguagem</h3><ul>{project.tools.map((item) => <li key={item}><span>↳</span>{item}</li>)}</ul></div>
           </div>
         </section>
 

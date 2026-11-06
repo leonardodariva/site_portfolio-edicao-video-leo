@@ -38,12 +38,11 @@ export function MobileMenu() {
               <a className="mobile-social-linkedin" href={siteConfig.linkedin} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
                 <SocialIcon name="linkedin" size={17} /><span>LinkedIn</span><i aria-hidden="true">↗</i>
               </a>
-              <a className="mobile-social-github" href={siteConfig.github} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
-                <SocialIcon name="github" size={17} /><span>GitHub</span><i aria-hidden="true">↗</i>
-              </a>
-              <a className="mobile-social-whatsapp" href={siteConfig.whatsapp} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
-                <SocialIcon name="whatsapp" size={17} /><span>WhatsApp</span><i aria-hidden="true">↗</i>
-              </a>
+              {siteConfig.whatsapp && (
+                <a className="mobile-social-whatsapp" href={siteConfig.whatsapp} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
+                  <SocialIcon name="whatsapp" size={17} /><span>WhatsApp</span><i aria-hidden="true">↗</i>
+                </a>
+              )}
               <a className="mobile-social-email" href={`mailto:${siteConfig.email}?subject=Contato pelo portfólio`} onClick={() => setOpen(false)}>
                 <SocialIcon name="email" size={17} /><span>E-mail</span><i aria-hidden="true">↗</i>
               </a>

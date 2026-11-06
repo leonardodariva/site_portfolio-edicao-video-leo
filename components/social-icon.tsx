@@ -1,8 +1,8 @@
-import { FaGithub, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
+import { FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
 import type { IconType } from "react-icons";
 
-type SocialIconName = "linkedin" | "github" | "whatsapp" | "email";
+type SocialIconName = "linkedin" | "whatsapp" | "email";
 
 type SocialIconProps = {
   name: SocialIconName;
@@ -11,7 +11,6 @@ type SocialIconProps = {
 
 const icons: Record<SocialIconName, IconType> = {
   linkedin: FaLinkedinIn,
-  github: FaGithub,
   whatsapp: FaWhatsapp,
   email: SiGmail,
 };

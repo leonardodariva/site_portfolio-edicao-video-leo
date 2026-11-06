@@ -32,7 +32,9 @@ export function CursorExperience() {
       if (!(target instanceof Element)) return;
       const overProject = Boolean(target.closest(".project-image-link"));
       const overControl = Boolean(target.closest("a, button, [role='button']"));
-      cursor.classList.toggle("is-explore", overProject);
+      const overHeader = Boolean(target.closest(".site-header"));
+      cursor.classList.toggle("is-explore", false);
+      cursor.classList.toggle("is-header", overHeader);
       cursor.classList.toggle("is-big", !overProject && overControl);
     };
 

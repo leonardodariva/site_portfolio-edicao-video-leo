@@ -16,26 +16,27 @@ export function SiteFooter() {
           <h2>Vamos construir<br />o próximo projeto.</h2>
           <div className="footer-actions" aria-label="Canais de contato">
             <a className="round-cta round-cta-linkedin" href={siteConfig.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><SocialIcon name="linkedin" size={22} /><small>LinkedIn</small></a>
-            <a className="round-cta round-cta-whatsapp" href={siteConfig.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp"><SocialIcon name="whatsapp" size={22} /><small>WhatsApp</small></a>
-            <a className="round-cta round-cta-github" href={siteConfig.github} target="_blank" rel="noreferrer" aria-label="GitHub"><SocialIcon name="github" size={22} /><small>GitHub</small></a>
+            {siteConfig.whatsapp && <a className="round-cta round-cta-whatsapp" href={siteConfig.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp"><SocialIcon name="whatsapp" size={22} /><small>WhatsApp</small></a>}
             <a className="round-cta round-cta-email" href={`mailto:${siteConfig.email}?subject=Contato pelo portfólio`} aria-label="E-mail"><SocialIcon name="email" size={22} /><small>E-mail</small></a>
           </div>
         </div>
         <div className="footer-grid">
-          <div><span className="footer-label">Disponível para</span><p>Edição · Motion · Storytelling · Conteúdo digital</p></div>
-          <div className="footer-links"><span className="footer-label">Links</span><a href={siteConfig.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={siteConfig.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={`mailto:${siteConfig.email}`}>E-mail ↗</a><Link href="/curriculo">Currículo ↗</Link></div>
+          <div><span className="footer-label">Disponível para</span><p>YouTube · Reels · Shorts · Conteúdo digital</p></div>
+          <div className="footer-links"><span className="footer-label">Links</span><a href={siteConfig.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={`mailto:${siteConfig.email}`}>E-mail ↗</a><Link href="/curriculo">Currículo ↗</Link></div>
           <div><span className="footer-label">Baseado em</span><p>Apucarana, Paraná<br />Brasil</p></div>
         </div>
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} Leonardo Dariva</span>
-          <span>Desenvolvido com Next.js</span>
+          <span>Histórias em movimento</span>
           <a href="#top">↑ Voltar ao topo</a>
         </div>
       </div>
       </footer>
-      <a className="whatsapp-float" href={siteConfig.whatsapp} target="_blank" rel="noreferrer" aria-label="Conversar pelo WhatsApp">
-        <SocialIcon name="whatsapp" size={22} />
-      </a>
+      {siteConfig.whatsapp && (
+        <a className="whatsapp-float" href={siteConfig.whatsapp} target="_blank" rel="noreferrer" aria-label="Conversar pelo WhatsApp">
+          <SocialIcon name="whatsapp" size={22} />
+        </a>
+      )}
     </>
   );
 }

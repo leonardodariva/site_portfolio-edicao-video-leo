@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FiCheck, FiCode, FiFileText, FiSquare, FiTarget } from "react-icons/fi";
+import { FiCheck, FiFileText, FiFilm, FiMail, FiPenTool, FiSquare, FiTarget, FiZap } from "react-icons/fi";
 import { HeroTitle } from "@/components/hero-title";
 import { IntroLoader } from "@/components/intro-loader";
 import { ProjectCard } from "@/components/project-card";
@@ -7,14 +7,21 @@ import { ProofTrail } from "@/components/proof-trail";
 import { ScrollEffects } from "@/components/scroll-effects";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { experience, projects, technologyGroups } from "@/data/site";
+import { VisualProjectCard } from "@/components/visual-project-card";
+import { featuredVideos, graphicProjects, motionProjects, services } from "@/data/site";
 
 const journey = [
   { number: "01", title: "Entender a história", text: "Objetivos, público e intenção entram primeiro. A edição começa pela mensagem que precisa chegar.", icon: FiTarget },
   { number: "02", title: "Encontrar o ritmo", text: "Cortes, trilha, pausas e movimento organizam a narrativa antes do acabamento.", icon: FiSquare },
-  { number: "03", title: "Construir a narrativa", text: "Imagem, som e motion se encontram para transformar material bruto em uma experiência que prende a atenção.", icon: FiCode },
+  { number: "03", title: "Construir a narrativa", text: "Imagem, som e motion se encontram para transformar material bruto em uma experiência que prende a atenção.", icon: FiFilm },
   { number: "04", title: "Refinar e entregar", text: "Revisão, cor, áudio e formatos finais garantem uma entrega consistente em cada tela.", icon: FiCheck },
 ];
+
+const serviceIcons = {
+  "Video Editing": FiFilm,
+  "Motion Design": FiZap,
+  "Graphic Design": FiPenTool,
+};
 
 export default function Home() {
   return (
@@ -25,20 +32,20 @@ export default function Home() {
 
       <main id="top">
         <section className="hero v3-hero" aria-labelledby="hero-title">
-          <div className="hero-ambient-smoke" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </div>
           <div className="page-shell v3-hero-inner">
-            <div className="hero-kicker">
-              <span>Leonardo Dariva</span>
-              <span>Portfólio</span>
-              <span>Brasil · disponível para colaborar</span>
+            <div className="hero-topline">
+              <p>Adobe Premiere Pro · After Effects · DaVinci Resolve</p>
+              <p>YouTube · Reels · Horizontal · Vertical</p>
             </div>
-            <div className="v3-hero-copy" id="hero-title"><HeroTitle /></div>
+            <div className="v3-hero-copy" id="hero-title">
+              <p className="hero-overline">LEONARDO DARIVA · FREELANCE</p>
+              <HeroTitle />
+              <div className="hero-actions" aria-label="Ações principais">
+                <Link className="hero-action hero-action-primary" href="#projetos">Ver meus trabalhos <FiFilm aria-hidden="true" size={15} /></Link>
+                <Link className="hero-action hero-action-secondary" href="#contato">Entrar em contato <FiMail aria-hidden="true" size={15} /></Link>
+              </div>
+            </div>
             <div className="hero-bottomline">
-              <p>Transformo ideias em narrativas visuais claras, ritmadas e prontas para publicar.</p>
               <div className="hero-scroll-cue">
                 <span className="hero-scroll-cue-lines" aria-hidden="true">
                   <span />
@@ -47,17 +54,82 @@ export default function Home() {
                 </span>
                 Role para explorar
               </div>
-              <p>Edição · Motion · Storytelling · Audiovisual</p>
             </div>
           </div>
         </section>
 
-        <section id="processo" className="journey-section">
-          <div className="page-shell journey-layout">
-            <div className="journey-intro" data-reveal>
+        <section id="projetos" className="section v3-projects-section">
+          <div className="page-shell">
+            <div className="v3-section-heading" data-reveal>
+              <p className="section-label">Portfólio audiovisual e visual</p>
+              <h2>Trabalhos selecionados.</h2>
+              <p>Edição, motion e design gráfico organizados em uma seleção direta para mostrar diferentes formas de transformar ideias em imagem.</p>
+            </div>
+            <div className="project-format-group">
+              <div className="project-format-heading" data-reveal>
+                <h3><span className="project-format-index">01</span> Shorts &amp; Reels</h3>
+                <p className="section-label">Formato vertical</p>
+              </div>
+              <div className="work-grid">
+                {featuredVideos.map((project, index) => <ProjectCard key={project.slug} project={project} index={index} />)}
+              </div>
+            </div>
+            <div className="project-format-group">
+              <div className="project-format-heading" data-reveal>
+                <h3><span className="project-format-index">02</span> Animação e Criação Visual</h3>
+                <p className="section-label">Motion design · VFX</p>
+              </div>
+              <div className="visual-project-grid motion-project-grid">
+                {motionProjects.map((project, index) => <VisualProjectCard key={project.slug} project={project} index={index} />)}
+              </div>
+            </div>
+            <div className="project-format-group">
+              <div className="project-format-heading" data-reveal>
+                <h3><span className="project-format-index">03</span> Design Gráfico</h3>
+                <p className="section-label">Identidade · Peças visuais</p>
+              </div>
+              <div className="visual-project-grid graphic-project-grid">
+                {graphicProjects.map((project, index) => <VisualProjectCard key={project.slug} project={project} index={index} />)}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="servicos" className="section services-section">
+          <div className="page-shell">
+            <div className="services-heading" data-reveal>
+              <p className="section-label">O que eu faço</p>
+              <h2>Três formas de dar movimento às ideias.</h2>
+              <p>Edição, motion e design gráfico para transformar uma intenção em uma entrega visual clara.</p>
+            </div>
+            <div className="services-grid">
+              {services.map((service, index) => {
+                const ServiceIcon = serviceIcons[service.title];
+
+                return (
+                  <article className="service-card" data-reveal key={service.title}>
+                    <div className="service-card-top">
+                      <span className="service-number">0{index + 1}</span>
+                      <span className="service-icon" aria-hidden="true"><ServiceIcon size={24} /></span>
+                    </div>
+                    <h3>{service.title}</h3>
+                    <p>{service.description}</p>
+                    <ul>
+                      {service.deliverables.map((deliverable) => <li key={deliverable}>{deliverable}</li>)}
+                    </ul>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section id="processo" className="section v3-about-section process-about-section">
+          <div className="page-shell process-about-process">
+            <div className="process-about-heading" data-reveal>
               <p className="section-label">Como eu trabalho</p>
-              <h2>Um olhar criativo<br />para cada história.</h2>
-              <p>Entro onde a narrativa precisa ganhar ritmo — da organização do material bruto ao corte final, com cuidado visual, sonoro e intenção em cada escolha.</p>
+              <h2>Da intenção ao corte final.</h2>
+              <p>Um processo claro para transformar material bruto em uma narrativa que prende a atenção.</p>
             </div>
             <div className="journey-cards">
               {journey.map((item) => {
@@ -76,53 +148,27 @@ export default function Home() {
               })}
             </div>
           </div>
-        </section>
-
-        <section id="projetos" className="section v3-projects-section">
-          <div className="page-shell">
-            <div className="v3-section-heading" data-reveal>
-              <p className="section-label">Trabalho selecionado</p>
-              <h2>Projetos que transformam<br />ideias em movimento.</h2>
-              <p>Da primeira referência ao corte final, cada trabalho combina narrativa, ritmo e cuidado visual para comunicar melhor.</p>
-            </div>
-            <div className="work-grid">
-              {projects.map((project, index) => <ProjectCard key={project.slug} project={project} index={index} />)}
-            </div>
-          </div>
-        </section>
-
-        <section id="sobre" className="section v3-about-section">
-          <div className="page-shell v3-about-grid">
-            <div className="v3-about-portrait" data-reveal>
-              <div className="portrait-window">
-                <img src="https://avatars.githubusercontent.com/u/48518784?v=4" alt="Retrato de Leonardo Dariva" loading="lazy" />
+          <span id="sobre" className="section-anchor" aria-hidden="true" />
+          <div className="page-shell process-about-intro">
+            <div className="v3-about-grid">
+              <div className="v3-about-portrait" data-reveal>
+                <div className="portrait-window">
+                  <img src="/brand/leonardo-dariva.svg" alt="Marca de Leonardo Dariva" loading="lazy" />
+                </div>
+                <div className="portrait-caption"><span>Leonardo Dariva — Editor de vídeo</span><span>Apucarana · PR</span></div>
               </div>
-              <div className="portrait-caption"><span>Leonardo Dariva — Editor de vídeo</span><span>Apucarana · PR</span></div>
-            </div>
-            <div className="v3-about-copy" data-reveal>
-              <p className="section-label">Sobre mim</p>
-              <h2>Existe uma história<br />por trás de cada corte.</h2>
-              <p className="about-statement">Sou Leonardo, editor de vídeo com olhar para narrativa, ritmo e experiência visual.</p>
-              <p>Meu trabalho parte do material bruto e encontra a melhor forma de contar cada história: escolha de planos, montagem, trilha, som, cor e motion.</p>
-              <div className="experience-intro">
-                <p className="section-label">Experiência</p>
+              <div className="v3-about-copy" data-reveal>
+                <p className="section-label">Sobre mim</p>
+                <h2>Existe uma história<br />por trás de cada corte.</h2>
+                <p className="about-statement">Sou um profissional criativo que trabalha com edição de vídeo, motion design e design gráfico.</p>
+                <p>Gosto de transformar ideias em conteúdos visuais que comunicam, envolvem e valorizam cada projeto — da escolha dos planos ao acabamento final.</p>
+                <div className="about-specialties" aria-label="Especialidades">
+                  <span>Video Editing</span>
+                  <span>Motion Design</span>
+                  <span>Graphic Design</span>
+                </div>
+                <Link className="about-contact-link" href="#contato">Entrar em contato <FiMail size={15} aria-hidden="true" /></Link>
               </div>
-              <div className="career-list">
-                {experience.map((item) => (
-                  <article key={item.company}><h3>{item.company}</h3><p>{item.role}</p><small>{item.period}</small></article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="stack" className="section v3-stack-section">
-          <div className="page-shell">
-            <div className="v3-stack-title" data-reveal><p className="section-label">Tecnologias</p><h2>Ferramentas entram<br />quando fazem sentido.</h2></div>
-            <div className="capability-list">
-              {technologyGroups.map((group, index) => (
-                <article key={group.title} data-reveal><span>0{index + 1}</span><div><h3>{group.title}</h3><p>{group.description}</p></div><ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul></article>
-              ))}
             </div>
           </div>
         </section>
@@ -140,7 +186,7 @@ export default function Home() {
               <div className="resume-highlight-grid">
                 <article><span className="section-label">Experiência</span><strong>Edição + direção visual</strong><p>Um olhar de produto aplicado a cortes, sequências e histórias que precisam ser sentidas.</p></article>
                 <article><span className="section-label">Especialidade</span><strong>Montagem · Motion · Color</strong><p>Da organização do material bruto ao acabamento final, com consistência em cada detalhe.</p></article>
-                <article><span className="section-label">Disponibilidade</span><strong>Projetos audiovisuais</strong><p>Colaboração com pessoas e marcas que querem comunicar melhor em vídeo.</p></article>
+                <article><span className="section-label">Formatos</span><strong>YouTube · Reels · Shorts</strong><p>Vídeos horizontais e verticais pensados para cada plataforma, tela e objetivo.</p></article>
               </div>
               <Link className="resume-highlight-link" href="/curriculo">Ver currículo completo <span><FiFileText size={16} aria-hidden="true" /></span></Link>
             </div>

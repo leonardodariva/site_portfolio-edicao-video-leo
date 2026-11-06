@@ -1,7 +1,8 @@
 export const navigationLinks = [
   ["Projetos", "/#projetos"],
+  ["Serviços", "/#servicos"],
   ["Sobre", "/#sobre"],
-  ["Stack", "/#stack"],
+  ["Processo", "/#processo"],
   ["Experiência", "/#experiencia"],
   ["Contato", "/#contato"],
 ] as const;

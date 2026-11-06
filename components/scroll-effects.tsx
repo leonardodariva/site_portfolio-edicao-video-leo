@@ -2,14 +2,12 @@
 
 import { useEffect } from "react";
 
-type TrailPoint = { x: number; y: number };
-
-function attachSmokeField(surface: HTMLElement) {
+function attachWaveField(surface: HTMLElement) {
   const canvas = document.createElement("canvas");
-  canvas.className = "smoke-field";
+  canvas.className = "wave-field";
   canvas.setAttribute("aria-hidden", "true");
   surface.prepend(canvas);
-  surface.classList.add("has-smoke-field");
+  surface.classList.add("has-wave-field");
 
   const context = canvas.getContext("2d");
   if (!context) return () => canvas.remove();
@@ -17,20 +15,15 @@ function attachSmokeField(surface: HTMLElement) {
   const isDottedSurface = surface.matches(".v3-hero, .proof-trail-stage, .site-footer");
   const ratio = Math.min(window.devicePixelRatio || 1, 2);
   const dotSpacing = 16;
-  const dotRepelRadius = 140;
-  const dotRepelDistance = 25;
-  const trail: TrailPoint[] = [];
-  const trailLength = 30;
   let width = 1;
   let height = 1;
   let mouseX = -9999;
   let mouseY = -9999;
   let easedX = -9999;
   let easedY = -9999;
-  let clientX = -9999;
-  let clientY = -9999;
   let inside = false;
   let frame = 0;
+  let elapsed = 0;
 
   const sizeCanvas = () => {
     const rect = surface.getBoundingClientRect();
@@ -42,9 +35,9 @@ function attachSmokeField(surface: HTMLElement) {
   };
 
   const locatePointer = (event: PointerEvent) => {
-    clientX = event.clientX;
-    clientY = event.clientY;
     const rect = surface.getBoundingClientRect();
+    const clientX = event.clientX;
+    const clientY = event.clientY;
     inside = clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom;
     if (!inside) return;
     mouseX = clientX - rect.left;
@@ -61,22 +54,16 @@ function attachSmokeField(surface: HTMLElement) {
     mouseY = -9999;
   };
 
-  const relocateOnScroll = () => {
-    if (!inside || clientX < -1000) return;
-    const rect = surface.getBoundingClientRect();
-    mouseX = clientX - rect.left;
-    mouseY = clientY - rect.top;
-  };
-
-  const drawInteractiveDots = () => {
+  const drawWaveDots = () => {
     const isLight = document.documentElement.dataset.theme === "light";
-    context.fillStyle = isLight ? "rgba(39,39,37,.14)" : "rgba(151,166,255,.2)";
+    context.fillStyle = isLight ? "rgba(39,39,37,.24)" : "rgba(151,166,255,.2)";
     const pointerActive = inside && easedX > -1000 && easedY > -1000;
 
     for (let y = 1; y < height; y += dotSpacing) {
       for (let x = 1; x < width; x += dotSpacing) {
-        let offsetX = 0;
-        let offsetY = 0;
+        const phase = x * 0.034 + y * 0.018 - elapsed * 2.2;
+        let offsetX = Math.cos(phase) * 1.8;
+        let offsetY = Math.sin(phase) * 3.2 + Math.sin(y * 0.026 + elapsed * 1.35) * 1.4;
         let influence = 0;
 
         if (pointerActive) {
@@ -84,12 +71,12 @@ function attachSmokeField(surface: HTMLElement) {
           const deltaY = y - easedY;
           const distance = Math.hypot(deltaX, deltaY);
 
-          if (distance < dotRepelRadius) {
-            influence = 1 - distance / dotRepelRadius;
-            const force = influence * influence * dotRepelDistance;
+          if (distance < 140) {
+            influence = 1 - distance / 140;
+            const force = influence * influence * 25;
             if (distance > 0.001) {
-              offsetX = (deltaX / distance) * force;
-              offsetY = (deltaY / distance) * force;
+              offsetX += (deltaX / distance) * force;
+              offsetY += (deltaY / distance) * force;
             }
           }
         }
@@ -104,31 +91,14 @@ function attachSmokeField(surface: HTMLElement) {
     context.globalAlpha = 1;
   };
 
-  const drawSmoke = () => {
+  const drawField = (timestamp: number) => {
+    elapsed = timestamp / 1000;
     easedX += (mouseX - easedX) * 0.16;
     easedY += (mouseY - easedY) * 0.16;
-    if (inside) trail.push({ x: easedX, y: easedY });
-    while (trail.length > trailLength) trail.shift();
-    if (!inside && trail.length) trail.shift();
-
     context.clearRect(0, 0, width, height);
-    if (isDottedSurface) drawInteractiveDots();
+    if (isDottedSurface) drawWaveDots();
 
-    trail.forEach((point, index) => {
-      const strength = (index + 1) / trail.length;
-      const radius = 18 + strength * 52;
-      const alpha = 0.008 * strength * strength;
-      const gradient = context.createRadialGradient(point.x, point.y, 0, point.x, point.y, radius);
-      gradient.addColorStop(0, `rgba(55,123,255,${(alpha * 3).toFixed(4)})`);
-      gradient.addColorStop(0.46, `rgba(55,123,255,${(alpha * 1.2).toFixed(4)})`);
-      gradient.addColorStop(1, "rgba(55,123,255,0)");
-      context.fillStyle = gradient;
-      context.beginPath();
-      context.arc(point.x, point.y, radius, 0, Math.PI * 2);
-      context.fill();
-    });
-
-    frame = window.requestAnimationFrame(drawSmoke);
+    frame = window.requestAnimationFrame(drawField);
   };
 
   sizeCanvas();
@@ -136,16 +106,14 @@ function attachSmokeField(surface: HTMLElement) {
   resizeObserver.observe(surface);
   surface.addEventListener("pointermove", locatePointer, { passive: true });
   surface.addEventListener("pointerleave", leaveSurface, { passive: true });
-  window.addEventListener("scroll", relocateOnScroll, { passive: true });
-  drawSmoke();
+  frame = window.requestAnimationFrame(drawField);
 
   return () => {
     window.cancelAnimationFrame(frame);
-    window.removeEventListener("scroll", relocateOnScroll);
     surface.removeEventListener("pointermove", locatePointer);
     surface.removeEventListener("pointerleave", leaveSurface);
     resizeObserver.disconnect();
-    surface.classList.remove("has-smoke-field");
+    surface.classList.remove("has-wave-field");
     canvas.remove();
   };
 }
@@ -168,21 +136,40 @@ export function ScrollEffects() {
     );
     revealItems.forEach((item) => observer.observe(item));
 
-    const lightSurfaces = Array.from(document.querySelectorAll<HTMLElement>(".v3-hero, .proof-trail-stage, .site-footer"));
-    const lightSurface = (event: PointerEvent) => {
-      const surface = event.currentTarget as HTMLElement;
-      const rect = surface.getBoundingClientRect();
-      surface.style.setProperty("--smoke-x", `${event.clientX - rect.left}px`);
-      surface.style.setProperty("--smoke-y", `${event.clientY - rect.top}px`);
-    };
+    const siteHeader = document.querySelector<HTMLElement>(".site-header");
+    const updateHeader = () => siteHeader?.classList.toggle("is-scrolled", window.scrollY > 24);
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
 
-    lightSurfaces.forEach((surface) => surface.addEventListener("pointermove", lightSurface, { passive: true }));
-    const smokeCleanups = lightSurfaces.map(attachSmokeField);
+    const scrollToHash = () => {
+      const hash = window.location.hash;
+      if (!hash) return;
+      const target = document.querySelector<HTMLElement>(hash);
+      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    const handleSamePageAnchor = (event: MouseEvent) => {
+      const element = event.target instanceof Element ? event.target : null;
+      const anchor = element?.closest<HTMLAnchorElement>("a[href^='#']");
+      if (!anchor || anchor.hash !== window.location.hash) return;
+      const target = document.querySelector<HTMLElement>(anchor.hash);
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    const hashTimer = window.setTimeout(scrollToHash, 80);
+    window.addEventListener("hashchange", scrollToHash);
+    document.addEventListener("click", handleSamePageAnchor);
+
+    const waveSurfaces = Array.from(document.querySelectorAll<HTMLElement>(".v3-hero, .proof-trail-stage, .site-footer"));
+    const waveCleanups = waveSurfaces.map(attachWaveField);
 
     return () => {
       observer.disconnect();
-      lightSurfaces.forEach((surface) => surface.removeEventListener("pointermove", lightSurface));
-      smokeCleanups.forEach((cleanup) => cleanup());
+      window.removeEventListener("scroll", updateHeader);
+      window.clearTimeout(hashTimer);
+      window.removeEventListener("hashchange", scrollToHash);
+      document.removeEventListener("click", handleSamePageAnchor);
+      waveCleanups.forEach((cleanup) => cleanup());
     };
   }, []);
 
