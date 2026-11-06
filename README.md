@@ -2,12 +2,7 @@
 
 Portfólio profissional focado em edição de vídeo, narrativa visual, motion, ritmo e acabamento. A seleção de trabalhos será atualizada com os vídeos produzidos por Leonardo.
 
-## Duas versões
-
-- [`versoes/antiga`](versoes/antiga/README.md): cópia independente do site Next.js que continua na raiz deste repositório. A raiz foi mantida para preservar o deploy existente.
-- [`versoes/v2`](versoes/v2/README.md): novo conceito estático, com identidade japonesa sombria, preto e vermelho, pagode no hero e grades de trabalho em 9:16, 16:9 e 1:1. Os cards de trabalho são demonstrativos.
-
-Para visualizar a V2 localmente: `python3 -m http.server 3000 --directory versoes/v2/dist` e abra `http://localhost:3000`.
+Esta é a versão original (V1), construída em Next.js. O novo conceito V2 está em um [repositório independente](https://github.com/leonardodariva/site_portfolio-edicao-video-leo-v2).
 
 ## Executar localmente
 
